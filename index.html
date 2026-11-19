@@ -290,6 +290,7 @@ footer{background:#070c22;color:#9aa3c2;text-align:center;padding:26px 16px;font
             <button class="chip" data-v="top">Planta</button>
             <button class="chip" data-v="inside">Interior</button>
             <button class="chip" data-v="altar">Altar</button>
+            <button class="chip" data-v="park">Estacionamento</button>
           </div>
         </div>
         <div>
@@ -324,6 +325,7 @@ footer{background:#070c22;color:#9aa3c2;text-align:center;padding:26px 16px;font
             <li data-z="3"><span class="num">3</span>Altar / Púlpito</li>
             <li data-z="4"><span class="num">4</span>Escritório · Copa · Depósito</li>
             <li data-z="5"><span class="num">5</span>Banheiros M/F (na entrada)</li>
+            <li data-z="6"><span class="num">P</span>Estacionamento (18 vagas)</li>
           </ul>
         </div>
       </div>
@@ -342,6 +344,11 @@ footer{background:#070c22;color:#9aa3c2;text-align:center;padding:26px 16px;font
     <div class="planta">
       <div class="card" style="padding:18px">
         <svg id="plan" viewBox="0 0 760 200" role="img" aria-label="Planta baixa 6 por 35 metros"></svg>
+      </div>
+      <div class="card" style="padding:18px">
+        <h3 style="margin:0 0 4px;font-size:15px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)">Implantação no terreno</h3>
+        <p class="note" style="margin:0 0 10px">Templo no lado direito do terreno e estacionamento no lado esquerdo (vista da rua). Dimensões do terreno ilustrativas — confirmar com o levantamento.</p>
+        <svg id="site" viewBox="0 0 760 330" role="img" aria-label="Implantação: templo à direita e estacionamento à esquerda"></svg>
       </div>
       <div class="card zone-info" id="zinfo"></div>
     </div>
@@ -387,7 +394,7 @@ footer{background:#070c22;color:#9aa3c2;text-align:center;padding:26px 16px;font
           <li><b>Iluminação em LED</b> embutida no forro</li>
           <li><b>Sanca iluminada</b> no acabamento perimetral</li>
           <li><b>Arandelas</b> de facho duplo nos pilares azuis</li>
-          <li>Painel <b>ripado em madeira</b> com cruz iluminada no altar</li>
+          <li>Painel <b>ripado em madeira</b> com filetes de LED no altar</li>
           <li>Iluminação de jardim na fachada</li>
         </ul>
       </div>
@@ -407,7 +414,7 @@ footer{background:#070c22;color:#9aa3c2;text-align:center;padding:26px 16px;font
         <!-- altar -->
         <rect x="90" y="150" width="120" height="40" fill="#e8dcc4"/>
         <rect x="110" y="95" width="70" height="55" fill="#a06a3a"/>
-        <rect x="140" y="105" width="8" height="34" fill="#fff6cf"/><rect x="129" y="114" width="30" height="8" fill="#fff6cf"/>
+        
         <rect x="132" y="156" width="26" height="20" fill="#7a4d27"/>
         <g id="seats"></g>
         <!-- doors -->
@@ -525,8 +532,9 @@ footer{background:#070c22;color:#9aa3c2;text-align:center;padding:26px 16px;font
 const ZONES=[
   {n:1,name:"Entrada / Hall de acolhimento",x0:0,x1:3,rects:[[0,3,1.6,4.4]],area:"≈ 7,5 m²",desc:"Porta de vidro em alumínio com pórtico azul e corredor central de 2,50 m entre os dois banheiros, levando ao salão. Vasos de plantas e iluminação embutida. Entrada em nível para acessibilidade."},
   {n:2,name:"Salão principal (congregação)",x0:3,x1:24,rects:[[3,24,0,6]],area:"≈ 126 m²",desc:"Duas alas de cadeiras individuais estofadas (5 por fileira, 11 fileiras de cada lado) com corredor central iluminado. Pé-direito de 5,50 m, pilares azuis com arandelas."},
-  {n:3,name:"Altar / Púlpito",x0:24,x1:28.5,rects:[[24,28.5,0,6]],area:"≈ 27 m²",desc:"Plataforma elevada com púlpito em madeira, painel ripado com cruz iluminada, espaço para louvor (bateria, teclado) e cadeiras para a liderança."},
+  {n:3,name:"Altar / Púlpito",x0:24,x1:28.5,rects:[[24,28.5,0,6]],area:"≈ 27 m²",desc:"Plataforma elevada com púlpito em madeira, painel ripado em madeira com filetes de LED, espaço para louvor (bateria, teclado) e cadeiras para a liderança."},
   {n:4,name:"Escritório · Copa · Depósito",x0:28.5,x1:35,rects:[[28.5,35,0,6]],area:"≈ 39 m²",desc:"Escritório pastoral com mesa e estante, acessado pelas portas laterais do altar. Ao fundo, copa com bancada, pia e geladeira, e depósito com prateleiras."},
+  {n:6,name:"Estacionamento",site:true,x0:0,x1:0,rects:[],area:"18 vagas (2 PCD)",desc:"Estacionamento no lado esquerdo do terreno (de quem olha da rua), com 18 vagas a 90°, sendo 2 para PCD junto à entrada, corredor de manobra de 6 m, postes de iluminação e calçada ajardinada ligando as vagas à porta do templo. O templo fica no lado direito do terreno."},
   {n:5,name:"Banheiros M/F (na entrada)",x0:0,x1:3,rects:[[0,3,0,1.6],[0,3,4.4,6]],area:"≈ 4,7 m² cada",desc:"Dois banheiros logo na entrada, um em cada lateral do hall: masculino à esquerda e feminino à direita. Cada um tem vaso, bancada com cuba e espelho, barra de apoio (PCD) e porta voltada para o hall."}
 ];
 const plan=document.getElementById('plan'), SX=20, OX=30, OY=40, H=120, SY=H/6; // 1m = 20px
@@ -578,14 +586,33 @@ el('line',{x1:OX+35*SX+18,y1:OY,x2:OX+35*SX+18,y2:OY+H,stroke:'#1d3f9a'});
 const d3=el('text',{x:OX+35*SX+14,y:OY+H/2,'text-anchor':'middle',fill:'#1d3f9a','font-weight':700,'font-size':12,'font-family':'Inter',transform:`rotate(90 ${OX+35*SX+14} ${OY+H/2})`});d3.textContent='6,00 m';
 plan.setAttribute('viewBox',`0 0 ${OX+35*SX+40} ${OY+H+50}`);
 
+/* ===== IMPLANTAÇÃO ===== */
+(function(){
+  const sv=document.getElementById('site'); if(!sv) return;
+  const S=14, ox=60, oy=20; // 1 m = 14 px ; svg x = depth from street, svg y = 3D x (left of lot at top)
+  const X=(z)=>ox+(7.5-z)*S, Y=(x)=>oy+(x+17)*S;
+  const e=(t,a)=>{const n=document.createElementNS(ns,t);for(const k in a)n.setAttribute(k,a[k]);sv.appendChild(n);return n};
+  const txt=(x,y,s,o={})=>{const n=e('text',Object.assign({x,y,'font-family':'Inter','font-size':12,fill:'#5d6475'},o));n.textContent=s;return n};
+  e('rect',{x:10,y:oy-6,width:40,height:21.6*S+12,fill:'#3a3d44'}); txt(30,oy+150,'RUA',{transform:`rotate(-90 30 ${oy+150})`,fill:'#fff','font-weight':700,'text-anchor':'middle'});
+  e('rect',{x:X(7.5),y:Y(-17),width:46.5*S,height:21.6*S,fill:'#cfe0c4',stroke:'#7a8a70','stroke-width':3});
+  e('rect',{x:X(7.3),y:Y(-16.8),width:46.1*S,height:11.2*S,fill:'#b9b6ae'});
+  for(let i=0;i<=18;i++){const z=6-i*2.5;e('line',{x1:X(z),y1:Y(-16.8),x2:X(z),y2:Y(-11.8),stroke:'#fff','stroke-width':2})}
+  e('line',{x1:X(6),y1:Y(-11.8),x2:X(-39),y2:Y(-11.8),stroke:'#fff','stroke-width':2});
+  for(let i=0;i<2;i++){e('rect',{x:X(6-i*2.5)+1,y:Y(-16.7),width:2.5*S-2,height:4.8*S,fill:'#1f5fbf',opacity:.85})}
+  txt(X(-16),Y(-8.6),'ESTACIONAMENTO · 18 vagas (2 PCD)',{'font-weight':700,fill:'#1f2a44','text-anchor':'middle'});
+  e('rect',{x:X(0.3),y:Y(-3),width:35.3*S,height:6*S,fill:'#f6efe1',stroke:'#1d3f9a','stroke-width':3});
+  txt(X(-17.5),Y(0)+5,'TEMPLO 6 × 35 m',{'font-weight':700,fill:'#1d3f9a','text-anchor':'middle'});
+  e('rect',{x:X(7.5),y:Y(-3.7),width:7.2*S,height:7.4*S,fill:'#d9d2c4'}); txt(X(4),Y(0)+4,'acesso',{'text-anchor':'middle','font-size':11});
+  e('path',{d:`M${X(7.5)-6} ${Y(-9)} l14 -8 v16 z`,fill:'#1d3f9a'}); txt(X(7.5)+14,Y(-9)+4,'entrada de veículos',{'font-size':11});
+})();
 const zinfo=document.getElementById('zinfo');
 function selectZone(n){
   const z=ZONES.find(z=>z.n==n);
   plan.querySelectorAll('.zone').forEach(g=>g.classList.toggle('active',g.dataset.n==n));
-  zinfo.innerHTML=`<span class="num">${z.n}</span><h3>${z.name}</h3>
-   <div class="m"><span>Faixa: ${String(z.x0).replace('.',',')} – ${String(z.x1).replace('.',',')} m</span><span>Comprimento ≈ ${String(z.x1-z.x0).replace('.',',')} m</span><span>Área ${z.area}</span></div>
+  zinfo.innerHTML=`<span class="num">${z.n==6?'P':z.n}</span><h3>${z.name}</h3>
+   <div class="m">${z.site?'':`<span>Faixa: ${String(z.x0).replace('.',',')} – ${String(z.x1).replace('.',',')} m</span><span>Comprimento ≈ ${String(z.x1-z.x0).replace('.',',')} m</span>`}<span>${z.site?'':'Área '}${z.area}</span></div>
    <p style="margin:0;color:var(--muted)">${z.desc}</p>
-   <div class="zlist">${ZONES.map(o=>`<button class="${o.n==n?'active':''}" data-n="${o.n}"><span class="num">${o.n}</span>${o.name}</button>`).join('')}</div>
+   <div class="zlist">${ZONES.slice().sort((p,q)=>p.n-q.n).map(o=>`<button class="${o.n==n?'active':''}" data-n="${o.n}"><span class="num">${o.n==6?'P':o.n}</span>${o.name}</button>`).join('')}</div>
    <p class="note">Medidas por ambiente são aproximadas, estimadas a partir da planta baixa do projeto.</p>`;
   zinfo.querySelectorAll('.zlist button').forEach(b=>b.onclick=()=>selectZone(+b.dataset.n));
 }
