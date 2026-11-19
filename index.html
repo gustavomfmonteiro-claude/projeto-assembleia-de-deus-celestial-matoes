@@ -217,6 +217,15 @@ footer{background:#070c22;color:#9aa3c2;text-align:center;padding:26px 16px;font
 @media (max-width:1000px){.controls{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){.controls{grid-template-columns:1fr}#viewer{height:70vh !important;min-height:420px}}
 #maquete .wrap{max-width:1400px}
+
+#npad{position:absolute;right:12px;bottom:12px;z-index:4;display:grid;grid-template-columns:repeat(3,36px);grid-template-rows:repeat(3,36px) auto;gap:4px;justify-items:center}
+#npad button{width:36px;height:36px;border-radius:10px;border:1px solid rgba(240,212,138,.35);background:rgba(11,18,48,.72);color:#fff;font:600 14px Inter;cursor:pointer;backdrop-filter:blur(6px);touch-action:none}
+#npad button:hover{background:#d4a84a;color:#1a1405}
+#npad [data-nav="u"]{grid-area:1/2}#npad [data-nav="l"]{grid-area:2/1}#npad [data-nav="reset"]{grid-area:2/2}#npad [data-nav="r"]{grid-area:2/3}#npad [data-nav="d"]{grid-area:3/2}#npad .zm{grid-row:4}
+#npad .zm{grid-column:1/4;display:flex;gap:4px;margin-top:4px}
+#npad .zm button{width:56px}
+#viewer .hint{right:150px}
+@media (max-width:560px){#npad{grid-template-columns:repeat(3,32px);grid-template-rows:repeat(3,32px) auto}#npad button{width:32px;height:32px}#npad .zm button{width:50px}#viewer .hint{display:none}}
 </style>
 </head>
 <body>
@@ -274,11 +283,18 @@ footer{background:#070c22;color:#9aa3c2;text-align:center;padding:26px 16px;font
         <div id="tag"></div>
         <div id="zcard"></div>
         <div class="vbar">
+          <button id="bMove" title="Arrastar para mover a maquete">✥ Mover</button>
           <button id="bTour">▶ Tour guiado</button>
           <button id="bShot">◉ Imagem</button>
           <button id="bFull">⛶ Tela cheia</button>
         </div>
-        <div class="hint">Arraste: girar · Roda: zoom · Botão direito: mover</div>
+        <div id="npad" aria-label="Navegação">
+          <button data-nav="u" title="Mover para frente">▲</button>
+          <button data-nav="l" title="Mover para a esquerda">◀</button><button data-nav="reset" title="Centralizar">⟲</button><button data-nav="r" title="Mover para a direita">▶</button>
+          <button data-nav="d" title="Mover para trás">▼</button>
+          <div class="zm"><button data-nav="in" title="Aproximar">＋</button><button data-nav="out" title="Afastar">－</button></div>
+        </div>
+        <div class="hint">Clique em qualquer parte para ver os detalhes · ✥ Mover: arrastar desloca a maquete · setas e ＋/－ também funcionam</div>
       </div>
       <div class="card controls">
         <div>
@@ -650,6 +666,6 @@ addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key
   setTimeout(fb,15000);
 })();
 </script>
-<script src="assets/maquete3d.bundle.js?v=7"></script>
+<script src="assets/maquete3d.bundle.js?v=9"></script>
 </body>
 </html>
