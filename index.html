@@ -501,17 +501,17 @@ footer{background:#070c22;color:#9aa3c2;text-align:center;padding:26px 16px;font
       <p>Imagens geradas da maquete 3D no novo formato: terreno 15 × 42 m, templo à esquerda, estacionamento à direita, varanda, salas de estudo e banheiros nos fundos. Clique para ampliar.</p>
     </div>
     <div class="gal" id="gal">
-      <figure class="g1"><img src="assets/3d-aerea.jpg" alt="Vista aérea: templo à esquerda, estacionamento à direita e bloco dos fundos" loading="lazy"><figcaption>Vista aérea: templo à esquerda, estacionamento à direita e bloco dos fundos</figcaption></figure>
-      <figure class="g2"><img src="assets/3d-fachada.jpg" alt="Fachada com a grade e os portões" loading="lazy"><figcaption>Fachada com a grade e os portões</figcaption></figure>
-      <figure class="gx"><img src="assets/3d-estacionamento.jpg" alt="Estacionamento: 13 vagas (2 PCD) no lado direito" loading="lazy"><figcaption>Estacionamento: 13 vagas (2 PCD) no lado direito</figcaption></figure>
-      <figure class="gx"><img src="assets/3d-fundos-externa.jpg" alt="Parte externa: salas de estudo e banheiros com a varanda" loading="lazy"><figcaption>Parte externa: salas de estudo e banheiros com a varanda</figcaption></figure>
-      <figure class="gx"><img src="assets/3d-fundos-aerea-externa.jpg" alt="Parte externa vista de cima: varanda, salas e banheiros" loading="lazy"><figcaption>Parte externa vista de cima: varanda, salas e banheiros</figcaption></figure>
-      <figure class="gx"><img src="assets/3d-salao.jpg" alt="Salão principal: 140 lugares" loading="lazy"><figcaption>Salão principal: 140 lugares</figcaption></figure>
-      <figure class="gx"><img src="assets/3d-altar.jpg" alt="Altar com painel ripado (sem cruz)" loading="lazy"><figcaption>Altar com painel ripado (sem cruz)</figcaption></figure>
-      <figure class="gx"><img src="assets/3d-fundos-interior.jpg" alt="Bloco dos fundos por dentro: banheiros M/F e 2 salas de estudo" loading="lazy"><figcaption>Bloco dos fundos por dentro: banheiros M/F e 2 salas de estudo</figcaption></figure>
-      <figure class="gx"><img src="assets/3d-aerea-interior.jpg" alt="Vista aérea sem telhado: distribuição interna" loading="lazy"><figcaption>Vista aérea sem telhado: distribuição interna</figcaption></figure>
-      <figure class="gx"><img src="assets/3d-fachada-noite.jpg" alt="Fachada à noite" loading="lazy"><figcaption>Fachada à noite</figcaption></figure>
-      <figure class="gx"><img src="assets/3d-maquete-fisica.jpg" alt="Maquete física sobre base de madeira" loading="lazy"><figcaption>Maquete física sobre base de madeira</figcaption></figure>
+      <figure class="g1"><img src="assets/3d-aerea.jpg?v=2" alt="Vista aérea: templo à esquerda, estacionamento à direita e bloco dos fundos" loading="lazy"><figcaption>Vista aérea: templo à esquerda, estacionamento à direita e bloco dos fundos</figcaption></figure>
+      <figure class="g2"><img src="assets/3d-fachada.jpg?v=2" alt="Fachada com a grade e os portões" loading="lazy"><figcaption>Fachada com a grade e os portões</figcaption></figure>
+      <figure class="gx"><img src="assets/3d-estacionamento.jpg?v=2" alt="Estacionamento: 13 vagas (2 PCD) no lado direito" loading="lazy"><figcaption>Estacionamento: 13 vagas (2 PCD) no lado direito</figcaption></figure>
+      <figure class="gx"><img src="assets/3d-fundos-externa.jpg?v=2" alt="Parte externa: salas de estudo e banheiros com a varanda" loading="lazy"><figcaption>Parte externa: salas de estudo e banheiros com a varanda</figcaption></figure>
+      <figure class="gx"><img src="assets/3d-fundos-aerea-externa.jpg?v=2" alt="Parte externa vista de cima: varanda, salas e banheiros" loading="lazy"><figcaption>Parte externa vista de cima: varanda, salas e banheiros</figcaption></figure>
+      <figure class="gx"><img src="assets/3d-salao.jpg?v=2" alt="Salão principal: 140 lugares" loading="lazy"><figcaption>Salão principal: 140 lugares</figcaption></figure>
+      <figure class="gx"><img src="assets/3d-altar.jpg?v=2" alt="Altar com painel ripado (sem cruz)" loading="lazy"><figcaption>Altar com painel ripado (sem cruz)</figcaption></figure>
+      <figure class="gx"><img src="assets/3d-fundos-interior.jpg?v=2" alt="Bloco dos fundos por dentro: banheiros M/F e 2 salas de estudo" loading="lazy"><figcaption>Bloco dos fundos por dentro: banheiros M/F e 2 salas de estudo</figcaption></figure>
+      <figure class="gx"><img src="assets/3d-aerea-interior.jpg?v=2" alt="Vista aérea sem telhado: distribuição interna" loading="lazy"><figcaption>Vista aérea sem telhado: distribuição interna</figcaption></figure>
+      <figure class="gx"><img src="assets/3d-fachada-noite.jpg?v=2" alt="Fachada à noite" loading="lazy"><figcaption>Fachada à noite</figcaption></figure>
+      <figure class="gx"><img src="assets/3d-maquete-fisica.jpg?v=2" alt="Maquete física sobre base de madeira" loading="lazy"><figcaption>Maquete física sobre base de madeira</figcaption></figure>
     </div>
     <details class="old-imgs">
       <summary>Imagens da versão anterior do projeto (antes do novo terreno 15 × 42 m)</summary>
@@ -674,12 +674,12 @@ addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key
 /* Fallback: se a maquete 3D não puder rodar neste aparelho, mostra a imagem da maquete */
 (function(){
   function fb(){ if(window.__maquete3dOK) return; var v=document.getElementById('viewer'); if(!v||v.dataset.fb) return; v.dataset.fb=1;
-    v.innerHTML='<img src="assets/3d-aerea-interior.jpg" alt="Maquete do templo" style="width:100%;height:100%;object-fit:cover"><div style="position:absolute;left:12px;right:12px;bottom:12px;background:rgba(11,18,48,.85);color:#fff;padding:10px 14px;border-radius:10px;font-size:13px">Este navegador não conseguiu carregar a maquete 3D interativa. Tente atualizar a página ou abrir no Google Chrome.</div>'; }
+    v.innerHTML='<img src="assets/3d-aerea-interior.jpg?v=2" alt="Maquete do templo" style="width:100%;height:100%;object-fit:cover"><div style="position:absolute;left:12px;right:12px;bottom:12px;background:rgba(11,18,48,.85);color:#fff;padding:10px 14px;border-radius:10px;font-size:13px">Este navegador não conseguiu carregar a maquete 3D interativa. Tente atualizar a página ou abrir no Google Chrome.</div>'; }
   try{ var c=document.createElement('canvas'); if(!(c.getContext('webgl2')||c.getContext('webgl'))) { fb(); return; } }catch(e){ fb(); return; }
   window.addEventListener('error',function(){ setTimeout(function(){ if(!window.__maquete3dOK) fb(); },1500); });
   setTimeout(fb,15000);
 })();
 </script>
-<script src="assets/maquete3d.bundle.js?v=12"></script>
+<script src="assets/maquete3d.bundle.js?v=13"></script>
 </body>
 </html>
