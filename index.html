@@ -241,6 +241,11 @@ footer{background:#070c22;color:#9aa3c2;text-align:center;padding:26px 16px;font
 .old-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:12px}
 .old-grid img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:8px;opacity:.85}
 @media (max-width:760px){.old-grid{grid-template-columns:repeat(3,1fr)}}
+
+.pix{max-width:460px;margin:8px auto 0;padding:22px 24px;border-radius:16px;background:rgba(255,255,255,.08);border:1px solid rgba(240,212,138,.45)}
+.pix-t{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-2);font-weight:600}
+.pix-k{font-size:clamp(26px,6vw,34px);font-weight:700;letter-spacing:.04em;margin:6px 0 4px;user-select:all}
+.pix-d{font-size:14px;opacity:.85;margin-bottom:16px}
 </style>
 </head>
 <body>
@@ -567,8 +572,15 @@ footer{background:#070c22;color:#9aa3c2;text-align:center;padding:26px 16px;font
   <div class="wrap">
     <div class="eyebrow">Faça parte desta obra</div>
     <h2>Ajude na construção do nosso templo</h2>
-    <p>Cada oferta, cada bloco e cada oração nos aproxima de um lugar onde vidas serão transformadas. Fale com a liderança da igreja para saber como contribuir.</p>
-    <a class="btn btn-gold" href="#galeria">Compartilhe o projeto</a>
+    <p>Cada oferta, cada bloco e cada oração nos aproxima de um lugar onde vidas serão transformadas.</p>
+    <div class="pix">
+      <div class="pix-t">Contribua pelo PIX</div>
+      <div class="pix-k" id="pixKey">85991314625</div>
+      <div class="pix-d">Banco do Nordeste · Favorecida: Maria Lúcia Oliveira Soares</div>
+      <button class="btn btn-gold" id="pixCopy" type="button">Copiar chave PIX</button>
+    </div>
+    <p style="margin-top:18px;font-size:15px">Fale com a liderança da igreja para saber outras formas de contribuir: materiais, mão de obra e oração.</p>
+    <a class="btn btn-ghost" href="#galeria">Compartilhe o projeto</a>
     <div class="verse">“Cada um contribua segundo propôs no seu coração; não com tristeza ou por necessidade; porque Deus ama ao que dá com alegria.” — 2 Coríntios 9:7</div>
   </div>
 </section>
@@ -679,6 +691,12 @@ addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key
   window.addEventListener('error',function(){ setTimeout(function(){ if(!window.__maquete3dOK) fb(); },1500); });
   setTimeout(fb,15000);
 })();
+</script>
+<script>
+(function(){var b=document.getElementById('pixCopy'),k=document.getElementById('pixKey');if(!b)return;
+b.onclick=function(){var t=k.textContent.trim();function ok(){b.textContent='Chave copiada!';setTimeout(function(){b.textContent='Copiar chave PIX'},2500)}
+function fb(){var r=document.createRange();r.selectNodeContents(k);var s=getSelection();s.removeAllRanges();s.addRange(r);try{document.execCommand('copy');ok()}catch(e){b.textContent='Selecione e copie a chave'}}
+if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,fb)}else fb()}})();
 </script>
 <script src="assets/maquete3d.bundle.js?v=14"></script>
 </body>
